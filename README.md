@@ -6,6 +6,8 @@ This project demonstrates an AI-driven customer support automation system that a
 
 A working prototype is built using **n8n**, showcasing real-time AI-powered workflow automation integrated with Google Sheets and dashboard analytics.
 
+This system demonstrates how AI can transform customer support from reactive operations to proactive, data-driven decision-making.
+
 ---
 
 ## 🎯 Objective
@@ -89,7 +91,7 @@ The workflow is implemented using **n8n** and includes:
 * Webhook node to receive queries
 * OpenAI node for classification
 * Structured Output Parser for clean JSON response
-* Set node to structure data
+* Set node to structure data (Query, Category, Timestamp)
 * Google Sheets node to store results
 
 📁 **Workflow File:**
@@ -124,6 +126,15 @@ This chart shows how issues are distributed across platforms (WhatsApp, Email, W
 
 ---
 
+### 📌 Trends Over Time
+
+* Every query is stored with a **Timestamp** in Google Sheets
+* This enables **weekly and monthly trend analysis**
+* Future enhancement: Implementing time-series dashboards (line charts) to visualize weekly/monthly query trends
+* Trend data helps predict staffing needs and automation priorities
+
+---
+
 ## 📊 Data Storage
 
 Customer queries are stored in **Google Sheets** in structured format:
@@ -133,68 +144,91 @@ Customer queries are stored in **Google Sheets** in structured format:
 
 This enables:
 
-* Trend analysis
+* Trend analysis (weekly/monthly)
 * Dashboard creation
 * Automation triggers
+* Historical reporting
 
 ---
 
 ## 📈 Business Insights
 
-* Logistics-related issues (Delivery Delay, Order Tracking) are frequent
-* Product complaints and refunds are also major contributors
-* Repetitive queries can be automated using AI
+* Logistics-related issues (Delivery Delay, Order Tracking) account for ~36% of all queries
+* Product complaints and refunds are also major contributors (~36% combined)
+* Subscription and payment issues (~18%) can be largely automated
+* A significant portion of repetitive queries can be automated using AI, reducing dependency on manual support
+* Timestamp data enables identifying peak complaint periods for proactive action
 
 ---
 
 ## ⚡ Automation Opportunities
 
-* Order Tracking → Auto-send tracking link
-* Delivery Delay → Notify logistics team
-* Refund Request → Trigger refund workflow
-* Product Complaint → Escalate to support
-* General Query → AI chatbot response
-* Payment Issues → Generate support ticket
+* **Order Tracking** → Auto-send tracking link via WhatsApp/Email
+* **Delivery Delay** → Notify logistics team automatically
+* **Refund Request** → Trigger refund workflow
+* **Product Complaint** → Escalate to human support agent
+* **General Query** → AI chatbot response via FAQ
+* **Payment Issues** → Generate support ticket automatically
+* **Subscription Issue** → Auto-check account status and respond
+* **Complex/Unresolved Issues** → Auto-escalate to human agent with full context
 
 ---
 
 ## 📈 Scalability
 
-* Webhook-based architecture supports high traffic
-* AI enables real-time classification
-* Easily integrates with CRM, chatbots, and APIs
-* Reduces manual workload significantly
+* Webhook-based architecture supports high query volumes without infrastructure changes
+* Cloud AI models (OpenAI) enable real-time classification at scale
+* Google Sheets can be replaced with a database (PostgreSQL, Airtable) for larger volumes
+* Easily integrates with CRM tools, chatbots, and helpdesk platforms
+* Adding new query categories requires only a prompt update — no code changes
+* Reduces manual workload significantly as volume grows
 
 ---
 
 ## 🚀 Future Enhancements
 
-* WhatsApp & Instagram API integration
-* Real-time chatbot automation
-* Sentiment analysis for prioritization
-* Power BI / Looker Studio dashboards
-* Multi-language support
+* WhatsApp & Instagram API integration for direct message handling
+* Real-time AI chatbot for instant automated responses
+* Sentiment analysis to prioritize urgent or angry customers
+* Power BI / Looker Studio dashboards for advanced analytics
+* Multi-language support for regional customers
+* Weekly/monthly trend line charts for volume forecasting
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **AI Model:** OpenAI GPT
-* **Automation:** n8n
-* **Database:** Google Sheets
-* **Visualization:** Excel (Pivot Tables + Charts)
-* **Integration:** Webhooks / APIs
+| Component     | Tool                          |
+| ------------- | ----------------------------- |
+| AI Model      | OpenAI GPT (gpt-4.1-mini)     |
+| Automation    | n8n                           |
+| Database      | Google Sheets                 |
+| Visualization | Excel (Pivot Tables + Charts) |
+| Integration   | Webhooks / REST APIs          |
 
 ---
 
 ## 🚀 How It Works
 
-1. User sends query via webhook
-2. AI model classifies the query
-3. Structured data is generated
+1. User sends query via webhook (from WhatsApp, Instagram, Email, or Website)
+2. AI model classifies the query into a predefined category
+3. Structured data (Query, Category, Timestamp) is generated
 4. Data is stored in Google Sheets
-5. Dashboard visualizes insights
-6. Automation can trigger responses
+5. Dashboard visualizes insights and trends
+6. Automation triggers appropriate response or escalation
+
+---
+
+## 📁 Repository Structure
+
+```
+├── workflow.json                     → n8n workflow export
+├── customer_query_dashboard.xlsx     → Excel dashboard with pivot table and charts
+├── WorkFlow.png                      → n8n workflow diagram
+├── pie.png                           → Issue distribution chart
+├── platform.png                      → Platform-wise analysis chart
+└── README.md                         → Project documentation
+```
 
 ---
 
@@ -202,10 +236,11 @@ This enables:
 
 This project demonstrates how AI + automation can transform customer support by:
 
-* Reducing manual effort
-* Improving response time
-* Generating actionable insights
-* Enabling scalable operations
+* Reducing manual effort through intelligent classification
+* Improving response time with automated replies
+* Generating actionable business insights from raw query data
+* Enabling scalable operations without increasing headcount
+* Identifying trends to proactively address recurring issues
 
 ---
 
@@ -214,5 +249,3 @@ This project demonstrates how AI + automation can transform customer support by:
 **Nithin M**
 📧 [nithinmgowda06@gmail.com](mailto:nithinmgowda06@gmail.com)
 🔗 https://www.linkedin.com/in/nithinm06/
-
----
