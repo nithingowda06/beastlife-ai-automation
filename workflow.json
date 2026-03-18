@@ -1,5 +1,5 @@
 {
-  "name": "workflow.json",
+  "name": "Customer Support Query Classification",
   "nodes": [
     {
       "parameters": {
@@ -11,29 +11,23 @@
       "name": "Webhook",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
-      "position": [
-        288,
-        2032
-      ],
+      "position": [288, 2032],
       "webhookId": "a3580016-a171-49c4-8c24-f0df11cfd523"
     },
     {
       "parameters": {
         "promptType": "define",
-        "text": "={{ $json.body.query }}",
+        "text": "={{ $json.query }}",
         "hasOutputParser": true,
         "options": {
-          "systemMessage": "You are an AI assistant for customer support classification.\n\nClassify the query into ONE category:\n\nOrder Tracking\nDelivery Delay\nRefund Request\nProduct Complaint\nSubscription Issue\nPayment Failure\nGeneral Query\n\nReturn ONLY the category name."
+          "systemMessage": "You are an AI assistant for customer support classification.\n\nClassify the query into ONE category:\n\nOrder Tracking\nDelivery Delay\nRefund Request\nProduct Complaint\nSubscription Issue\nPayment Failure\nGeneral Query\n\nReturn output ONLY in JSON format like:\n{\n  \"category\": \"Delivery Delay\"\n}"
         }
       },
       "id": "acdadd0a-c57f-4af2-aed2-4f67ede69950",
       "name": "AI Classification",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
-      "position": [
-        512,
-        2032
-      ]
+      "position": [512, 2032]
     },
     {
       "parameters": {
@@ -49,10 +43,7 @@
       "name": "OpenAI Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
-      "position": [
-        464,
-        2304
-      ],
+      "position": [464, 2304],
       "credentials": {
         "openAiApi": {
           "id": "HxcbVld4yw3ZbQJT",
@@ -69,10 +60,7 @@
       "name": "Structured Output Parser",
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
-      "position": [
-        672,
-        2304
-      ]
+      "position": [672, 2304]
     },
     {
       "parameters": {
@@ -81,7 +69,7 @@
             {
               "id": "id-1",
               "name": "query",
-              "value": "={{ $('Webhook').item.json.body.query }}",
+              "value": "={{ $('Webhook').item.json.query }}",
               "type": "string"
             },
             {
@@ -104,36 +92,33 @@
       "name": "Structure Data",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        864,
-        2032
-      ]
+      "position": [864, 2032]
     },
     {
       "parameters": {
-        "operation": "appendOrUpdate",
+        "operation": "append",
         "documentId": {
           "__rl": true,
-          "value": "1W4PhaGLrlS4CglSN8YLewJr_PcrqPsf9WmCZHOTHneU",
-          "mode": "list",
-          "cachedResultName": "To-do list",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1W4PhaGLrlS4CglSN8YLewJr_PcrqPsf9WmCZHOTHneU/edit?usp=drivesdk"
+          "value": "YOUR_GOOGLE_SHEET_ID_HERE",
+          "mode": "id"
         },
         "sheetName": {
           "__rl": true,
-          "value": 1386834576,
-          "mode": "list",
-          "cachedResultName": "To do",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1W4PhaGLrlS4CglSN8YLewJr_PcrqPsf9WmCZHOTHneU/edit#gid=1386834576"
+          "value": "Sheet1",
+          "mode": "name"
         },
         "columns": {
           "mappingMode": "defineBelow",
-          "value": {},
+          "value": {
+            "Query": "={{ $json.query }}",
+            "Category": "={{ $json.category }}",
+            "Timestamp": "={{ $json.timestamp }}"
+          },
           "matchingColumns": [],
           "schema": [
             {
-              "id": "\n To Do",
-              "displayName": "\n To Do",
+              "id": "Query",
+              "displayName": "Query",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -141,8 +126,17 @@
               "canBeUsedToMatch": true
             },
             {
-              "id": "1/3 completed  ",
-              "displayName": "1/3 completed  ",
+              "id": "Category",
+              "displayName": "Category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -157,10 +151,7 @@
       },
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
-      "position": [
-        1072,
-        2032
-      ],
+      "position": [1072, 2032],
       "id": "4b9ca801-a7f2-452f-a9d9-2405976dfef0",
       "name": "Append or update row in sheet",
       "credentials": {
@@ -233,11 +224,5 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "5fb058ed-d6d4-4d74-b797-f185fbab8e9a",
-  "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "3a4b4e654aead79d2d09255e2ececbc66d1ecf677f1d9737489f1cc2897a8e2b"
-  },
-  "id": "VDZYe25eXMLS1QJb",
   "tags": []
 }
