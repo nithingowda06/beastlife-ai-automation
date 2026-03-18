@@ -2,9 +2,7 @@
 
 ## 📌 Overview
 
-This project demonstrates an AI-driven customer support automation system designed to analyze customer queries, classify issues, and store structured data for insights and automation.
-
-The system helps reduce manual workload, improve response time, and identify common customer issues using AI workflows.
+This project demonstrates an AI-driven customer support automation system designed to analyze customer queries, classify issues, and store structured data for insights and automation. This project includes a working prototype built using n8n to simulate real-time AI-powered customer support automation.
 
 ---
 
@@ -19,23 +17,13 @@ The system helps reduce manual workload, improve response time, and identify com
 
 ## ⚙️ Workflow Architecture
 
-```
-Webhook (Receive Query)
-        ↓
-AI Classification (OpenAI)
-        ↓
-Structure Data (Format Output)
-        ↓
-Google Sheets (Store Data)
-        ↓
-(Optional) Auto Reply / Escalation
-```
+Webhook (Receive Query) → AI Classification (OpenAI) → Structure Data → Google Sheets → (Optional Auto Reply)
 
 ---
 
-## 🧠 AI Categorization
+## 🧠 AI-Powered Query Classification
 
-The system uses an LLM (OpenAI) to classify queries into the following categories:
+The system uses an LLM (OpenAI) to classify queries into:
 
 * Order Tracking
 * Delivery Delay
@@ -48,22 +36,37 @@ The system uses an LLM (OpenAI) to classify queries into the following categorie
 ### Example:
 
 **Input:**
-
-```
 My order is not delivered yet
-```
 
 **Output:**
-
-```
 Delivery Delay
-```
 
 ---
+
+## 🧪 Live Workflow Example
+
+**Input (Webhook Request):**
+
+```json
+{
+  "query": "My order is not delivered yet"
+}
+```
+
+**AI Output:**
+Delivery Delay
+
+**Stored in Google Sheets:**
+
+| Query                         | Category       |
+| ----------------------------- | -------------- |
+| My order is not delivered yet | Delivery Delay |
+
+---
+
 ## 🖼 Workflow Diagram
 
 ![Workflow Overview](WorkFlow.png)
-
 
 * n8n workflow
 * AI classification node
@@ -71,11 +74,10 @@ Delivery Delay
 * Dashboard chart
 
 ---
+
 ## 🔄 n8n Workflow
 
-The workflow is built using n8n and includes:
-
-* Webhook node to receive incoming queries
+* Webhook node to receive queries
 * OpenAI node for classification
 * Set node to structure data
 * Google Sheets node to store results
@@ -84,25 +86,16 @@ The workflow is built using n8n and includes:
 
 ## 📊 Data Storage
 
-Customer queries are stored in Google Sheets in structured format:
-
-| Query               | Category       |
-| ------------------- | -------------- |
-| Refund not received | Refund Request |
-
-This data can be used to build dashboards and analyze trends.
+Customer queries are stored in structured format in Google Sheets and used for dashboard visualization and trend analysis.
 
 ---
 
 ## 📈 Insights & Use Case
 
-From the sample dataset:
-
 * Order Tracking, Delivery Delay, Refund Requests, and Product Complaints each contribute ~20%
 * Payment Failures and General Queries contribute ~10%
 
-### Key Insight:
-
+**Key Insight:**
 Logistics and product quality are the major areas requiring improvement, while repetitive queries can be automated using AI.
 
 ---
@@ -118,34 +111,48 @@ Logistics and product quality are the major areas requiring improvement, while r
 
 ---
 
+## 📈 Scalability
+
+* Handles large query volumes via webhook-based architecture
+* Uses cloud AI models for real-time classification
+* Easily integrates with CRM and support tools
+* Supports scalable automation without increasing manual effort
+
+---
+
+## 🚀 Future Enhancements
+
+* WhatsApp & Instagram API integration
+* Real-time AI chatbot
+* Sentiment analysis for priority handling
+* Power BI / Looker Studio dashboards
+* Multi-language support
+
+---
+
 ## 🛠️ Tech Stack
 
 * AI Model: OpenAI GPT
 * Automation: n8n
 * Database: Google Sheets
-* Dashboard: Excel (Pivot Table + Pie Chart)
+* Dashboard: Excel (Pivot + Pie Chart)
 * Integration: Webhooks / APIs
 
 ---
 
 ## 🚀 How It Works
 
-1. User sends a query via webhook
-2. AI model classifies the query
+1. User sends query via webhook
+2. AI classifies the query
 3. Data is structured and stored
-4. Insights can be generated via dashboard
-5. Automation can trigger responses
+4. Dashboard generates insights
+5. Automation triggers responses
 
 ---
 
 ## 💡 Conclusion
 
-This system demonstrates how AI and automation can significantly improve customer support by:
-
-* Reducing manual effort
-* Providing faster responses
-* Generating actionable insights
-* Scaling support operations efficiently
+This system demonstrates how AI and automation can improve customer support by reducing manual work, improving response time, generating insights, and scaling operations efficiently.
 
 ---
 
@@ -154,5 +161,3 @@ This system demonstrates how AI and automation can significantly improve custome
 **Nithin M**
 📧 [nithinmgowda06@gmail.com](mailto:nithinmgowda06@gmail.com)
 🔗 https://www.linkedin.com/in/nithinm06/
-
----
