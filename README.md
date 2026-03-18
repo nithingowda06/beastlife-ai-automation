@@ -60,7 +60,17 @@ Delivery Delay
 ```
 
 ---
+## 🖼 Workflow Diagram
 
+![Workflow Overview](WorkFlow.png)
+
+
+* n8n workflow
+* AI classification node
+* Google Sheets output
+* Dashboard chart
+
+---
 ## 🔄 n8n Workflow
 
 The workflow is built using n8n and includes:
@@ -115,18 +125,6 @@ Logistics and product quality are the major areas requiring improvement, while r
 * Database: Google Sheets
 * Dashboard: Excel (Pivot Table + Pie Chart)
 * Integration: Webhooks / APIs
-
----
-
-## 🖼 Workflow Diagram
-
-![Workflow Overview](workflow.png)
-
-
-* n8n workflow
-* AI classification node
-* Google Sheets output
-* Dashboard chart
 
 ---
 
